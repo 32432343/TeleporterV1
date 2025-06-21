@@ -5,12 +5,52 @@ local Workspace = game:GetService("Workspace")
 
 local player = Players.LocalPlayer
 
+local junkA = math.random(100000, 999999)
+local junkB = "randomString" .. tostring(junkA)
+local junkC = {junkA, junkB, 42, "junk"}
+local function junkFunc1()
+    local sum = 0
+    for i = 1, 100 do
+        sum = sum + i * junkA
+        if sum > 999999999 then
+            sum = sum - junkA * 10
+        end
+    end
+    return sum
+end
+local function junkFunc2(x)
+    if x > 0 then
+        for i = 1, 10 do
+            local _ = i * junkA + x
+        end
+        return true
+    else
+        return false
+    end
+end
+local junkVar1 = junkFunc1()
+local junkVar2 = junkFunc2(junkVar1)
+for i = 1, 5 do
+    local _ = i * 2 + junkVar1
+end
+local junkTable = {}
+for i = 1, 20 do
+    junkTable[i] = i * junkA
+end
+local function junkFunc3()
+    return junkTable[math.random(1,20)] or 0
+end
+local junkValue = junkFunc3()
+-- JUNK CODE END
+
 local function getHRP()
     local char = player.Character or player.CharacterAdded:Wait()
     return char:WaitForChild("HumanoidRootPart")
 end
 
 local rootPart
+
+-- Get HumanoidRootPart
 task.spawn(function()
     rootPart = getHRP()
 end)
@@ -38,6 +78,7 @@ local function teleportThroughWalls(targetCFrame, steps, delay)
     end
 end
 
+-- GUI Setup
 local CoreGui = game:GetService("CoreGui")
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "Teleporter"
@@ -129,7 +170,7 @@ local selectedPlayer = nil
 
 local dropdownBtn = Instance.new("TextButton", mainFrame)
 dropdownBtn.Size = UDim2.new(0, 440, 0, 58)
-dropdownBtn.Position = UDim2.new(0, 20, 1, -135)
+dropdownBtn.Position = UDim2.new(0.5, -220, 1, -135)
 dropdownBtn.BackgroundColor3 = Color3.fromRGB(90, 160, 255)
 dropdownBtn.Font = Enum.Font.GothamBold
 dropdownBtn.TextSize = 28
@@ -141,7 +182,7 @@ dropdownCorner.CornerRadius = UDim.new(0, 20)
 
 local tpButton = Instance.new("TextButton", mainFrame)
 tpButton.Size = UDim2.new(0, 440, 0, 64)
-tpButton.Position = UDim2.new(0, 20, 1, -60)
+tpButton.Position = UDim2.new(0.5, -220, 1, -60)
 tpButton.BackgroundColor3 = Color3.fromRGB(65, 220, 150)
 tpButton.Font = Enum.Font.GothamBold
 tpButton.TextSize = 28
@@ -257,4 +298,3 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
         end
     end
 end)
- 
