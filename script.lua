@@ -98,7 +98,7 @@ local function createRoundedFrame(parent, size, pos, bgColor, radius)
     return frame
 end
 
-local mainFrame = createRoundedFrame(screenGui, UDim2.new(0, 600, 0, 460), UDim2.new(0, 20, 0, 20), Color3.fromRGB(25, 25, 35), UDim.new(0, 24))
+local mainFrame = createRoundedFrame(screenGui, UDim2.new(0, 600, 0, 460), UDim2.new(0.5, -300, 0.5, -230), Color3.fromRGB(25, 25, 35), UDim.new(0, 24))
 mainFrame.Active = true
 mainFrame.Draggable = true
 
@@ -109,7 +109,7 @@ title.BackgroundTransparency = 1
 title.Font = Enum.Font.GothamBold
 title.TextSize = 36
 title.TextColor3 = Color3.fromRGB(240, 240, 240)
-title.Text = "Teleport to Player V6"
+title.Text = "Teleporter"
 title.TextStrokeTransparency = 0.6
 title.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -138,7 +138,7 @@ closeBtn.MouseButton1Click:Connect(function()
     screenGui:Destroy()
 end)
 
-local searchBg = createRoundedFrame(mainFrame, UDim2.new(0, 440, 0, 50), UDim2.new(0, 20, 0, 100), Color3.fromRGB(65, 65, 95), UDim.new(0, 18))
+local searchBg = createRoundedFrame(mainFrame, UDim2.new(1, -40, 0, 50), UDim2.new(0, 20, 0, 100), Color3.fromRGB(65, 65, 95), UDim.new(0, 18))
 
 local searchBox = Instance.new("TextBox", searchBg)
 searchBox.Size = UDim2.new(1, -18, 1, -16)
@@ -151,7 +151,7 @@ searchBox.TextSize = 26
 searchBox.TextColor3 = Color3.fromRGB(240, 240, 240)
 searchBox.ClearTextOnFocus = false
 
-local listFrame = createRoundedFrame(mainFrame, UDim2.new(0, 440, 0, 220), UDim2.new(0, 20, 0, 160), Color3.fromRGB(50, 50, 75), UDim.new(0, 18))
+local listFrame = createRoundedFrame(mainFrame, UDim2.new(1, -40, 0, 220), UDim2.new(0, 20, 0, 160), Color3.fromRGB(50, 50, 75), UDim.new(0, 18))
 listFrame.Visible = false
 listFrame.ClipsDescendants = true
 
@@ -169,8 +169,8 @@ uiListLayout.Padding = UDim.new(0, 10)
 local selectedPlayer = nil
 
 local dropdownBtn = Instance.new("TextButton", mainFrame)
-dropdownBtn.Size = UDim2.new(0, 440, 0, 58)
-dropdownBtn.Position = UDim2.new(0.5, -220, 1, -135)
+dropdownBtn.Size = UDim2.new(1, -40, 0, 58)
+dropdownBtn.Position = UDim2.new(0, 20, 1, -135)
 dropdownBtn.BackgroundColor3 = Color3.fromRGB(90, 160, 255)
 dropdownBtn.Font = Enum.Font.GothamBold
 dropdownBtn.TextSize = 28
@@ -181,8 +181,8 @@ local dropdownCorner = Instance.new("UICorner", dropdownBtn)
 dropdownCorner.CornerRadius = UDim.new(0, 20)
 
 local tpButton = Instance.new("TextButton", mainFrame)
-tpButton.Size = UDim2.new(0, 440, 0, 64)
-tpButton.Position = UDim2.new(0.5, -220, 1, -60)
+tpButton.Size = UDim2.new(1, -40, 0, 64)
+tpButton.Position = UDim2.new(0, 20, 1, -60)
 tpButton.BackgroundColor3 = Color3.fromRGB(65, 220, 150)
 tpButton.Font = Enum.Font.GothamBold
 tpButton.TextSize = 28
@@ -192,6 +192,7 @@ tpButton.AutoButtonColor = true
 local tpCorner = Instance.new("UICorner", tpButton)
 tpCorner.CornerRadius = UDim.new(0, 20)
 
+-- Button Logic
 local function updateDropdownText(name)
     dropdownBtn.Text = name or "Select Player"
 end
